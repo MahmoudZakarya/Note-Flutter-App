@@ -33,7 +33,7 @@ class DatabaseHelper{
         title TEXT,
         content TEXT,
         photos TEXT,
-        type TEXT
+        type TEXT,
         date TEXT
         )
     ''');

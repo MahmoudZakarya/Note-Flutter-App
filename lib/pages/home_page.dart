@@ -42,7 +42,7 @@ class HomePage extends ConsumerWidget {
 
       body:notes.isEmpty?
 
-      Center(child: CircularProgressIndicator(color: Colors.amberAccent,)):
+      Center(child: Text("Write your first note !!", style: TextStyle(fontSize: 18),)):
 
       GridView.builder(
           padding: EdgeInsets.all(16),
