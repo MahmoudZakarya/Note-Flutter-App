@@ -240,7 +240,7 @@ class _AddEditNotePageState extends ConsumerState<AddEditNotePage> {
   Future<void> _saveNote() async {
     if (_formKey.currentState!.validate()) {
       final note = Note(
-          id: widget.note?.id ?? 0,
+          id: widget.note?.id ,
           title: _titleController.text,
           content:  _contentController.text,
           photos: widget.note?.photos,
@@ -249,10 +249,8 @@ class _AddEditNotePageState extends ConsumerState<AddEditNotePage> {
 
 
       if(widget.note == null){
-        await _databaseHelper.insertNote(note);
         await ref.read(notesProvider.notifier).addOrUpdateNote(note);
       } else {
-        await _databaseHelper.updateNote(note);
         await ref.read(notesProvider.notifier).addOrUpdateNote(note);
 
       }

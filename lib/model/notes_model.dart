@@ -64,7 +64,7 @@ class NotesNotifier extends StateNotifier<List<Note>> {
 
   // Add or update a note
   Future<void> addOrUpdateNote(Note note) async {
-    if (note.id == 0) {
+    if (note.id == null ) {
       // Add new note to SQLite
       final newNoteId = await _databaseHelper.insertNote(note);
 
