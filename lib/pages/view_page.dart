@@ -6,6 +6,7 @@ import 'package:shadcn_ui/shadcn_ui.dart'; // Ensure this package is added to yo
 
 import '../model/notes_model.dart';
 import 'add_edit_page.dart';
+import 'home_page.dart';
 
 class ViewNotePage extends ConsumerWidget {
   final Note note;
@@ -19,7 +20,7 @@ class ViewNotePage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(
           note.title,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.black87,
         actions: [
@@ -115,7 +116,7 @@ class ViewNotePage extends ConsumerWidget {
             // Note Content
             Text(
               note.content,
-              style: const TextStyle(fontSize: 16, color: Colors.white70),
+              style: const TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
             ),
 
             const SizedBox(height: 16),
@@ -124,8 +125,8 @@ class ViewNotePage extends ConsumerWidget {
             Align(
               alignment: Alignment.centerRight,
               child: Text(
-                note.date,
-                style: const TextStyle(fontSize: 10, color: Colors.white54),
+                formatDate(note.date),
+                style: const TextStyle(fontSize: 12, color: Colors.white70),
               ),
             ),
 
@@ -161,8 +162,8 @@ class ViewNotePage extends ConsumerWidget {
                           ),
                           ShadButton.destructive(
                             child: Text('Delete'),
-                            onPressed: () {
-                              // TODO: Call your delete logic here
+                            onPressed: () async{
+                              await ref.read(notesProvider.notifier).deleteNote(note.id ?? 0);
                               Navigator.pop(context); // Close dialog
                               Navigator.pop(context); // Return to previous page
                             },
